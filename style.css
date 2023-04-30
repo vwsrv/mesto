@@ -37,10 +37,19 @@
     padding: 0;
 }
 
+@media screen and (max-width:768px) {
+    .profile {
+        grid-template-columns: repeat(2, max-content);
+    }
+    .page {
+        max-width: 768px;
+    }
+}
+
 .profile__info {
     display: grid;
     grid-template-columns: 1fr min-content;
-    gap: 15px 18px;
+    gap: 9px 25px;
     align-items: center;
     list-style-type: none;
     margin: 0;
@@ -57,6 +66,7 @@
 }
 
 .profile__name {
+    vertical-align: bottom;
     margin: 0;
     padding: 0;
     font-style: normal;
@@ -76,6 +86,7 @@
 }
 
 .edit__button {
+    align-self: center;
     min-width: 24px;
     min-height: 24px;
     -webkit-appearance: none;
@@ -118,4 +129,72 @@
     transition: 0.3s;
 }
 
-/* * { outline: 1px solid yellow; } */
+/* ================================ELEMENTS======================================= */
+
+.elements {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 282px);
+    margin: 0 auto 67px;
+    padding: 0;
+    display: grid;
+    gap: 20px 17px;
+}
+
+.element {
+    border-radius: 10px;
+    padding: 0;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    max-width: 282px;
+}
+
+.element__image {
+    grid-column: span 2;
+    max-width: 282px;
+    box-sizing: border-box;
+    object-fit: contain;
+}
+
+.element__info {
+    margin: 20px 15px 25px 21px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.element__title {
+    margin: 0;
+    padding: 0;
+    color: #000000;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+}
+
+.like__button {
+    padding-left: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+         appearance: none;
+    border: 0;
+    border-radius: 0;
+    background-image: url(./images/Vector__like.svg);
+    background-color: #FFFFFF;
+    background-repeat: no-repeat;
+    width: 22px;
+    height: 19px;
+}
+
+.footer {
+    margin: 0 0 60px;
+    color: #545454;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+/* * { outline: 1px solid red; } */
