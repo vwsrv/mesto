@@ -1,6 +1,6 @@
 # Проект: Место
 
-#GH-Pages: https://vwsrv.github.io/mesto/
+# GH-Pages: https://vwsrv.github.io/mesto/
 
 ### Обзор
 
