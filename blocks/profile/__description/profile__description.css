@@ -1,4 +1,4 @@
-.profile__overview {
+.profile__description {
     grid-column: span 2;
     margin: 0;
     padding: 0;
@@ -9,13 +9,13 @@
 }
 
 @media screen and (max-width: 920px) {
-    .profile__overview {
+    .profile__description {
         margin: auto;
     }
 }
 
 @media screen and (max-width: 580px) {
-    .profile__overview {
+    .profile__description {
         font-style: normal;
         font-weight: 400;
         font-size: 14px;

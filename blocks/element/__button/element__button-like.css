@@ -1,24 +1,24 @@
-.like__button {
+.element__button-like {
     padding-left: 20px;
     -webkit-appearance: none;
     -moz-appearance: none;
          appearance: none;
     border: 0;
     border-radius: 0;
-    background-image: url("../../images/Vector__like.svg");
+    background-image: url("../../../images/Vector__like.svg");
     background-color: #FFFFFF;
     background-repeat: no-repeat;
     width: 22px;
     height: 19px;
 }
 
-.like__button:hover {
+.element__button-like:hover {
     cursor: pointer;
     transition: 0.3s;
-    background-image: url("../../images/like__black.svg");
+    background-image: url("../../../images/button__like_hover.svg");
 }
 
-.like__button:active {
-    background-image: url("../../images/like__black.svg");
+.element__button-like:active {
+    background-image: url("../../../images/like__black.svg");
 }
 
