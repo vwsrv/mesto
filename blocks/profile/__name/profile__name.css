@@ -11,6 +11,9 @@
 @media screen and (max-width: 920px) {
     .profile__name {
     margin: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     }
 }
 
@@ -20,5 +23,8 @@
     font-weight: 500;
     font-size: 27px;
     line-height: 33px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     }
 }
