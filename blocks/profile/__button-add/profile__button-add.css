@@ -3,14 +3,15 @@
     -webkit-appearance: none;
     -moz-appearance: none;
          appearance: none;
-    border: 0;
     background-image: url("../../../images/Vector__plus.svg");
     background-color: #000000;
     background-repeat: no-repeat;
     background-position: center;
     border: 2px solid #FFFFFF;
+    border-radius: 2px;
     min-width: 150px;
     min-height: 50px;
+    padding: 0;
 }
 
 .profile__button-add:hover {
@@ -21,7 +22,6 @@
 
 @media screen and (max-width: 920px) {
     .profile__button-add {
-        grid-column: span 1;
         min-width: 50%;
         justify-self: center;
     }
@@ -29,6 +29,7 @@
 
 @media screen and (max-width: 580px) {
     .profile__button-add {
-        min-width: 288px;
+        min-width: 280px;
+        background-size: 16px;
     }
 }

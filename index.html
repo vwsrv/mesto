@@ -4,79 +4,77 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./vendor/normalize.css">
-    <link rel="stylesheet" href="./vendor/fonts/fonts.css">
     <link rel="stylesheet" href="./pages/index.css">
     <title>Mesto</title>
 </head>
 <body class="page">
     <header class="header">
-        <img src="./images/Vector.png" alt="Вектор" class="header__logo">
+        <img src="./images/header-logo.svg" alt="Лого" class="header__logo">
     </header>
     <main class="content">
         <section class="profile">
             <img src="./images/profile__avatar.jpg" alt="Мужик" class="profile__avatar">
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__button-edit"></button>
+                <button type="button" class="profile__button-edit" aria-label="Редактировать"></button>
                 <p class="profile__description">Исследователь океана</p>               
             </div>
-            <button class="profile__button-add"></button>
+            <button type="button" class="profile__button-add" aria-label="Добавить"></button>
         </section>
         <section class="elements">
-            <div class="element">
-                <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="" class="element__image">
+            <article class="element">
+                <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Нравится" class="element__image">
                 <div class="element__info">  
                     <h2 class="element__title">Карачаево-Черкесия</h2>
-                    <button class="element__button-like"></button>
+                    <button type="button" class="element__like-btn" aria-label="Нравится"></button>
                 </div>
-            </div>
-            <div class="element">
-                <img src="./images/kirill-pershin-1404681-unsplash.png" alt="" class="element__image">
+            </article>
+            <article class="element">
+                <img src="./images/kirill-pershin-1404681-unsplash.png" alt="Нравится" class="element__image">
                 <div class="element__info"> 
                     <h2 class="element__title">Гора Эльбрус</h2>
-                    <button class="element__button-like"></button>
+                    <button type="button" class="element__like-btn" aria-label="Нравится"></button>
                 </div>
-            </div>
-            <div class="element">
-                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="" class="element__image">
+            </article>
+            <article class="element">
+                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Нравится" class="element__image">
                 <div class="element__info">
                     <h2 class="element__title">Домбай</h2>
-                    <button class="element__button-like"></button>
+                    <button class="element__like-btn" aria-label="Нравится"></button>
                 </div>
-            </div>
-            <div class="element">
-                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="" class="element__image">
+            </article>
+            <article class="element">
+                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Нравится" class="element__image">
                 <div class="element__info">
                     <h2 class="element__title">Домбай</h2>
-                    <button class="element__button-like"></button>
+                    <button type="button" class="element__like-btn" aria-label="Нравится"></button>
                 </div>
-            </div>
-            <div class="element">
-                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="" class="element__image">
+            </article>
+            <article class="element">
+                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Нравится" class="element__image">
                 <div class="element__info">
                     <h2 class="element__title">Домбай</h2>
-                    <button class="element__button-like"></button>
+                    <button type="button" class="element__like-btn" aria-label="Нравится"></button>
                 </div>
-            </div>
-            <div class="element">
-                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="" class="element__image">
+            </article>
+            <article class="element">
+                <img src="./images/kirill-pershin-1556355-unsplash.png" alt="Нравится" class="element__image">
                 <div class="element__info">
                     <h2 class="element__title">Домбай</h2>
-                    <button class="element__button-like"></button>
+                    <button type="button" class="element__like-btn" aria-label="Нравится"></button>
                 </div>
-            </div>
+            </article>
         </section>    
     </main>
     <footer class="footer">&#169; 2023 Mesto Russia</footer>
     <div class="popup">
         <div class="popup__container">
-            <button type="reset" class="popup__close-btn"></button>
-            <form class="popup__content">
+            <button type="reset" class="popup__close-btn" aria-label="Закрыть"></button>
+            <form class="popup__content" name="profile-edit">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" value="Жак-Ив Кусто" class="popup__input popup__input_type_name">
-                <input type="text" value="Исследователь океана" class="popup__input popup__input_type_description">
-                <button type="submit" class="popup__save-btn">Сохранить</button>
+                <input type="text" value="Жак-Ив Кусто" class="popup__input popup__input_type_name" placeholder="Введите имя профиля">
+                <input type="text" value="Исследователь океана" class="popup__input popup__input_type_description" placeholder="Введите описание профиля">
+                <button type="submit" class="popup__save-btn" aria-label="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
