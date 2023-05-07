@@ -1,4 +1,5 @@
 .profile {
+    box-sizing: border-box;
     align-items: center;
     align-content: center;
     max-width: 100%;
@@ -11,8 +12,9 @@
 
 @media screen and (max-width: 920px) {
     .profile {
-        grid-template-columns: 1fr;
         margin: 0 auto 36px;
+        grid-template-columns: minmax(282px, 1fr);
+        gap: 0;
     }
 }
 

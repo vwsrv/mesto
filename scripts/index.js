@@ -8,18 +8,18 @@ const defaultDescription = document.querySelector(".profile__description");
 const saveNewValues = document.querySelector(".popup__save-btn");
 
 const openEditForm = function () {
-    editForm.classList.add('popup__opened');
+    editForm.classList.add('popup_opened');
     newName.value = defaultName.textContent;
     newDescription.value = defaultDescription.textContent;
 }
 
 const closeEditForm = function () {
-    editForm.classList.remove('popup__opened');
+    editForm.classList.remove('popup_opened');
 }
 
 const inputNewValues = function (evt) {
     evt.preventDefault()
-    defaultName.textContent = newName.value.substr(0,24);
+    defaultName.textContent = newName.value.substr(0,15);
     defaultDescription.textContent = newDescription.value.substr(0,30);;
     closeEditForm();
 }
