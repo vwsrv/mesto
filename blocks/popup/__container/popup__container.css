@@ -8,13 +8,13 @@
     border-radius: 10px;
     width: 90vw;
     max-width: 430px;
-    margin: 195px auto 34px;
+    margin: 0 auto 34px;
     padding: 0;
 }
 
 @media screen and (max-width: 550px) {
     .popup__container {
-        margin: 123px auto 0;
+        margin: 0 auto 0;
         max-width: 282px;
     }
 }
