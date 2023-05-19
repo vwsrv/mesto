@@ -48,7 +48,7 @@ const addForm = document.querySelector('.popup__form_add');
 const addButton = document.querySelector('.profile__button-add');
 const elementLink = document.querySelector('.popup__input_type_link');
 const elementTitle = document.querySelector('.popup__input_type_title');
-const closeFormAdd = addForm.querySelector('.popup__close-btn');
+const closeFormAdd = document.querySelector('.popup__close-btn');
 
 const saveNewValues = document.querySelector(".popup__save-btn");
 
@@ -60,6 +60,10 @@ const defaultName = document.querySelector('.profile__name');
 const defaultDescription = document.querySelector(".profile__description");
 const closeFormEdit = editForm.querySelector('.popup__close-btn');
 
+const pictureForm = document.querySelector('.popup_form_image');
+const closeFormPic = document.querySelector('.popup__close-btn');
+const pictureCaption = document.querySelector('.popup__caption');
+
 const openAddForm = () => {
   addForm.classList.add('popup_opened');
 }
@@ -68,6 +72,10 @@ const openEditForm = () => {
   editForm.classList.add('popup_opened');
   newName.value = defaultName.textContent;
   newDescription.value = defaultDescription.textContent;
+}
+
+const openPictureForm = () => {
+  pictureForm.classList.add('popup_opened');
 }
 
 const inputAddValues = (evt) => {
@@ -92,9 +100,12 @@ const closePopUp = () => {
   addForm.classList.remove('popup_opened');
 }
 
+console.log(elements);
+
 addButton.addEventListener('click', openAddForm);
 editButton.addEventListener('click', openEditForm);
 closeFormEdit.addEventListener('click', closePopUp);
 closeFormAdd.addEventListener('click', closePopUp);
+closeFormPic.addEventListener('click', closePopUp);
 addForm.addEventListener('submit', inputAddValues);
 editForm.addEventListener('submit', inputEditValues);
