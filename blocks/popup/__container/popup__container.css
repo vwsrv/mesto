@@ -6,8 +6,8 @@
     flex-wrap: wrap;
     background-color: white;
     border-radius: 10px;
-    width: 90vw;
     max-width: 430px;
+    max-height: 540px;
     margin: 0 auto 34px;
     padding: 0;
 }

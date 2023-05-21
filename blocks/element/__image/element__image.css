@@ -3,7 +3,7 @@
     border-top-right-radius: 10px;
     grid-column: span 2;
     width: 282px;
-    max-height: 282px;
+    height: 282px;
     box-sizing: border-box;
     object-fit: cover;
     display: block;
