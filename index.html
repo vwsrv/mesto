@@ -25,24 +25,24 @@
         </section>    
     </main>
     <footer class="footer">&#169; 2023 Mesto Russia</footer>
-    <div class="popup popup__form_edit">
+    <div class="popup popup_form_edit">
         <div class="popup__container">
             <button type="reset" class="popup__close-btn" aria-label="Закрыть"></button>
             <form class="popup__content" name="profile-edit">
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" name="name" value="Жак-Ив Кусто" class="popup__input popup__input_type_name" placeholder="Введите имя профиля">
-                <input type="text" name="name" value="Исследователь океана" class="popup__input popup__input_type_description" placeholder="Введите описание профиля">
+                <input type="text" name="name" value="Жак-Ив Кусто" class="popup__input popup__input_type_name" placeholder="Введите имя профиля" required>
+                <input type="text" name="name" value="Исследователь океана" class="popup__input popup__input_type_description" placeholder="Введите описание профиля" required>
                 <button type="submit" class="popup__save-btn" aria-label="Сохранить">Сохранить</button>
             </form>
         </div>
     </div>
-    <div class="popup popup__form_add">
+    <div class="popup popup_form_add">
         <div class="popup__container">
             <button type="reset" class="popup__close-btn" aria-label="Закрыть"></button>
             <form class="popup__content" name="add_element">
                 <h2 class="popup__title popup__title_edit">Новое место</h2>
-                <input type="text" name="title" value="" class="popup__input popup__input_type_title" placeholder="Название">
-                <input type="url" name="link" value="" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку">
+                <input type="text" name="title" class="popup__input popup__input_type_title" placeholder="Название" required>
+                <input type="url" name="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" required>
                 <button type="submit" class="popup__save-btn" aria-label="Сохранить">Создать</button>
             </form>
         </div>
@@ -50,20 +50,20 @@
     <div class="popup popup_form_image">
         <div class="popup__image_сontainer">
             <button type="reset" class="popup__close-btn" aria-label="Закрыть"></button>
-            <img src="https://w.forfun.com/fetch/94/94c56e15f13f1de4740a76742b0b594f.jpeg" alt="Модальное изображение" class="popup__picture">
+            <img src="" alt="Модальное изображение" class="popup__picture">
             <p class="popup__caption">Lorem ipsum dolor sit amet.</p>
         </div>
     </div>
-    <template class="elements__template">
+    <template class="element-template">
         <article class="element">
             <button type="button" class="element__delete-btn" aria-label="Удалить"></button>
-            <img src="" alt="Нравится" class="element__image">
+            <img src="#" alt="" class="element__image">
             <div class="element__info">  
                 <h2 class="element__title"></h2>
                 <button type="button" class="element__like-btn" aria-label="Нравится"></button>
             </div>
         </article>
     </template>
-        <script src="./scripts/index.js"></script>
+        <script defer src="./scripts/index.js"></script>
 </body>
 </html>
