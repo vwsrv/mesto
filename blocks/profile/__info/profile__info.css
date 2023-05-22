@@ -1,4 +1,8 @@
 .profile__info {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 350px;
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 1fr min-content;
@@ -7,9 +11,6 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden; 
 }
 
 @media screen and (max-width: 920px) {

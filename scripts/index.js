@@ -31,7 +31,7 @@ const deleteElement = (evt) => {
 };
 
 const elements = document.querySelector('.elements');
-const elementsTemplate = document.querySelector('.elements__template').content;
+const elementsTemplate = document.querySelector('.element-template').content;
 const popupPicture = document.querySelector('.popup__picture');
 const popupCaption = document.querySelector('.popup__caption');
 
@@ -59,8 +59,6 @@ const renderElements = (title, picture) => {
       popupPicture.src = picture;
       popupPicture.alt = title;
     });
-
-
     return elementItem;
   };
 
@@ -79,7 +77,7 @@ const popUpClosed = (popUp) => {
   popUp.classList.remove('popup_opened');
 }
 
-const editForm = document.querySelector('.popup__form_edit');
+const editForm = document.querySelector('.popup_form_edit');
 const closeButtonEdit = editForm.querySelector('.popup__close-btn');
 const editButton = document.querySelector('.profile__button-edit');
 const newName = editForm.querySelector(".popup__input_type_name");
@@ -108,7 +106,7 @@ const closeButtonImage = imageForm.querySelector('.popup__close-btn');
 
 closeButtonImage.addEventListener('click', () => popUpClosed(imageForm));
 
-const addForm = document.querySelector('.popup__form_add')
+const addForm = document.querySelector('.popup_form_add')
 const closeButton = document.querySelectorAll('.popup__close-btn');
 const addButton = document.querySelector('.profile__button-add');
 const inputButton = document.querySelector('.popup__save-btn');
