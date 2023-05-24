@@ -1,41 +1,32 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
+const elementsContainer = document.querySelector('.elements');
+const elementsTemplate = document.querySelector('.element-template').content.querySelector('.element');
+
+const popupFormEdit = document.querySelector('.popup_form_edit');
+const popupFormAdd = document.querySelector('.popup_form_add')
+
+const openPopup = (popUp) => {
+  popUp.classList.add('popup_opened');
+}
+
+const closePopup = (popUp) => {
+  popUp.classList.remove('popup_opened');
+}
 
 const deleteElement = (evt) => {
     const element = evt.target.closest('.element');
     element.remove();
 };
 
-const elements = document.querySelector('.elements');
-const elementsTemplate = document.querySelector('.element-template').content;
-const popupPicture = document.querySelector('.popup__picture');
+document.querySelectorAll('.popup__close-btn').forEach(button => {
+  const buttonsPopup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(buttonsPopup));
+});  
+
+const imageForm = document.querySelector('.popup_form_image');
+const popupFormPicture = document.querySelector('.popup__picture');
 const popupCaption = document.querySelector('.popup__caption');
 
-const renderElements = (title, picture) => {
+const renderElements = (element) => {
     const elementItem = elementsTemplate.cloneNode(true);
     const elementTitle = elementItem.querySelector('.element__title');
     const elementImage = elementItem.querySelector('.element__image');
@@ -44,9 +35,9 @@ const renderElements = (title, picture) => {
       .querySelector('.element__delete-btn')
       .addEventListener('click', deleteElement);
 
-    elementTitle.textContent = title;
-    elementImage.src = picture;
-    elementImage.alt = title;
+    elementTitle.textContent = element.name;
+    elementImage.src = element.link;
+    elementImage.alt = element.name;
 
     const likeButton = elementItem.querySelector('.element__like-btn');
     likeButton.addEventListener('click', (evt) => {
@@ -54,36 +45,28 @@ const renderElements = (title, picture) => {
     });
 
     elementImage.addEventListener('click', () => {
-      popUpOpened(imageForm)
-      popupCaption.textContent = title;
-      popupPicture.src = picture;
-      popupPicture.alt = title;
+      openPopup(imageForm)
+      popupCaption.textContent = element.name;
+      popupFormPicture.src = element.link;
+      popupFormPicture.alt = element.name;
     });
     return elementItem;
   };
 
 const addInitialCards = () => {
     initialCards.forEach((item) => {
-      elements.append(renderElements(item.name, item.link))
+      elementsContainer.append(renderElements(item))
     })}
 
 addInitialCards();
 
-const popUpOpened = (popUp) => {
-  popUp.classList.add('popup_opened');
-}
-
-const popUpClosed = (popUp) => {
-  popUp.classList.remove('popup_opened');
-}
-
-const editForm = document.querySelector('.popup_form_edit');
-const closeButtonEdit = editForm.querySelector('.popup__close-btn');
+const closeButton = popupFormEdit.querySelector('.popup__close-btn');
 const editButton = document.querySelector('.profile__button-edit');
-const newName = editForm.querySelector(".popup__input_type_name");
-const newDescription = editForm.querySelector(".popup__input_type_description");
+const newName = popupFormEdit.querySelector(".popup__input_type_name");
+const newDescription = popupFormEdit.querySelector(".popup__input_type_description");
 const defaultName = document.querySelector('.profile__name');
 const defaultDescription = document.querySelector(".profile__description");
+const submitNewValues = document.querySelector('#popup__form_edit');
 
 const popupEditOpened = () => {
   newName.value = defaultName.textContent;
@@ -94,34 +77,27 @@ const popupEditInput = (evt) => {
   evt.preventDefault();
   defaultName.textContent = newName.value;
   defaultDescription.textContent = newDescription.value;
-  popUpClosed(editForm);
+  closePopup(popupFormEdit);
 }
 
-editForm.addEventListener('submit', popupEditInput);
-editButton.addEventListener('click', () => popUpOpened(editForm));
-closeButtonEdit.addEventListener('click', () => popUpClosed(editForm));
+submitNewValues.addEventListener('submit', popupEditInput);
+editButton.addEventListener('click', () => openPopup(popupFormEdit));
+closeButton.addEventListener('click', () => closePopup(popupFormEdit));
 
-const imageForm = document.querySelector('.popup_form_image');
-const closeButtonImage = imageForm.querySelector('.popup__close-btn');
-
-closeButtonImage.addEventListener('click', () => popUpClosed(imageForm));
-
-const addForm = document.querySelector('.popup_form_add')
-const closeButton = document.querySelectorAll('.popup__close-btn');
 const addButton = document.querySelector('.profile__button-add');
-const inputButton = document.querySelector('.popup__save-btn');
-const closeButtonAdd = addForm.querySelector('.popup__close-btn');
 const elementLink = document.querySelector('.popup__input_type_link');
 const elementTitle = document.querySelector('.popup__input_type_title');
+const submitAddValues = document.querySelector('#popup__form_add');
 
 const inputNewVluess = (evt) => {
   evt.preventDefault();
-  elements.prepend(renderElements(
-    elementTitle.value, elementLink.value
+  const cardObject = {name: elementTitle.value, 
+                      link: elementLink.value}
+  elementsContainer.prepend(renderElements(
+    cardObject
   ));
-  popUpClosed(addForm);
+  closePopup(popupFormAdd);
 }
 
-addButton.addEventListener('click', () => popUpOpened(addForm));
-closeButtonAdd.addEventListener('click', () => popUpClosed(addForm));
-addForm.addEventListener('submit', inputNewVluess);
+addButton.addEventListener('click', () => openPopup(popupFormAdd));
+submitAddValues.addEventListener('submit', inputNewVluess);

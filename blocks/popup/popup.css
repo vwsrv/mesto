@@ -5,7 +5,7 @@
     flex-wrap: wrap;
     position: fixed;
     opacity: 0;
-    transition: 0.7s;
+    transition: 0.5s;
     top: 0;
     left: 0;
     z-index: 999;
