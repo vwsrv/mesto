@@ -6,8 +6,8 @@
     align-content: center;
     flex-wrap: nowrap;
     border-radius: 10px;
-    width: 75vw;
-    height: 75vh;
+    max-width: 75vw;
+    min-height: 75vh;
     margin: 0 auto;
     padding: 0;
 }
