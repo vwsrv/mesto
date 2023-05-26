@@ -66,7 +66,7 @@ const newName = popupFormEdit.querySelector(".popup__input_type_name");
 const newDescription = popupFormEdit.querySelector(".popup__input_type_description");
 const defaultName = document.querySelector('.profile__name');
 const defaultDescription = document.querySelector(".profile__description");
-const submitNewValues = document.querySelector('#popup__form_edit');
+const inputNewValues = document.querySelector('#popup__form_edit');
 
 const popupEditOpened = () => {
   newName.value = defaultName.textContent;
@@ -80,24 +80,29 @@ const popupEditInput = (evt) => {
   closePopup(popupFormEdit);
 }
 
-submitNewValues.addEventListener('submit', popupEditInput);
-editButton.addEventListener('click', () => openPopup(popupFormEdit));
+inputNewValues.addEventListener('submit', popupEditInput);
+editButton.addEventListener('click', () => {
+  openPopup(popupFormEdit);
+  popupEditOpened();
+});
 closeButton.addEventListener('click', () => closePopup(popupFormEdit));
 
 const addButton = document.querySelector('.profile__button-add');
 const elementLink = document.querySelector('.popup__input_type_link');
 const elementTitle = document.querySelector('.popup__input_type_title');
-const submitAddValues = document.querySelector('#popup__form_add');
+const inputAddValues = document.querySelector('#popup__form_add');
 
 const inputNewVluess = (evt) => {
   evt.preventDefault();
+  closePopup(popupFormAdd);
   const cardObject = {name: elementTitle.value, 
                       link: elementLink.value}
+ inputAddValues.reset();
   elementsContainer.prepend(renderElements(
     cardObject
   ));
-  closePopup(popupFormAdd);
 }
 
+
 addButton.addEventListener('click', () => openPopup(popupFormAdd));
-submitAddValues.addEventListener('submit', inputNewVluess);
+inputAddValues.addEventListener('submit', inputNewVluess);
