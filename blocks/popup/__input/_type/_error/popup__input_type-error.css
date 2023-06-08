@@ -1,0 +1,9 @@
+.popup__input_type-error {
+    word-wrap: break-word;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    padding: 0;
+    max-width: 358px;
+    color: red;
+}

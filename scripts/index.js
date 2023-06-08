@@ -45,7 +45,6 @@ const renderElements = (element) => {
     });
 
     elementImage.addEventListener('click', () => {
-      openPopup(imageForm)
       popupCaption.textContent = element.name;
       popupFormPicture.src = element.link;
       popupFormPicture.alt = element.name;
@@ -71,6 +70,7 @@ const inputNewValues = document.querySelector('#popup__form_edit');
 const popupEditOpened = () => {
   newName.value = defaultName.textContent;
   newDescription.value = defaultDescription.textContent;
+  resetValidateErrors(popupFormEdit, validationConfig)
 }
 
 const popupEditInput = (evt) => {
@@ -102,7 +102,6 @@ const inputNewVluess = (evt) => {
     cardObject
   ));
 }
-
 
 addButton.addEventListener('click', () => openPopup(popupFormAdd));
 inputAddValues.addEventListener('submit', inputNewVluess);
