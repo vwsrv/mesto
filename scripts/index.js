@@ -1,3 +1,14 @@
+const validationConfig = {
+  formSelector: '.popup__content',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-btn',
+  inactiveButtonClass: 'popup__save-btn_inactive',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input_type_error-active',
+}
+
+enableValidation(validationConfig);
+
 const elementsContainer = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('.element-template').content.querySelector('.element');
 
@@ -70,7 +81,7 @@ const inputNewValues = document.querySelector('#popup__form_edit');
 const popupEditOpened = () => {
   newName.value = defaultName.textContent;
   newDescription.value = defaultDescription.textContent;
-  resetValidateErrors(popupFormEdit, validationConfig)
+  resetValidationError(popupFormEdit, validationConfig);
 }
 
 const popupEditInput = (evt) => {
@@ -99,9 +110,11 @@ const inputNewVluess = (evt) => {
                       link: elementLink.value}
  inputAddValues.reset();
   elementsContainer.prepend(renderElements(
-    cardObject
-  ));
+    cardObject));
 }
 
-addButton.addEventListener('click', () => openPopup(popupFormAdd));
+addButton.addEventListener('click', () => {
+  openPopup(popupFormAdd);
+  resetValidationError(popupFormAdd, validationConfig);
+});
 inputAddValues.addEventListener('submit', inputNewVluess);
