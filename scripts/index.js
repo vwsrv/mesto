@@ -1,3 +1,14 @@
+const validationConfig = {
+  formSelector: '.popup__content',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-btn',
+  inactiveButtonClass: 'popup__save-btn_inactive',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input_type_error-active',
+}
+
+enableValidation(validationConfig);
+
 const elementsContainer = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('.element-template').content.querySelector('.element');
 
@@ -20,7 +31,12 @@ const deleteElement = (evt) => {
 document.querySelectorAll('.popup__close-btn').forEach(button => {
   const buttonsPopup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(buttonsPopup));
-});  
+});
+
+// document.querySelectorAll('.popup__input').forEach(inpitElement => {
+//   const inputsAreas = inputElement.closest('.popup');
+
+// });
 
 const imageForm = document.querySelector('.popup_form_image');
 const popupFormPicture = document.querySelector('.popup__picture');
@@ -45,7 +61,6 @@ const renderElements = (element) => {
     });
 
     elementImage.addEventListener('click', () => {
-      openPopup(imageForm)
       popupCaption.textContent = element.name;
       popupFormPicture.src = element.link;
       popupFormPicture.alt = element.name;
@@ -71,6 +86,7 @@ const inputNewValues = document.querySelector('#popup__form_edit');
 const popupEditOpened = () => {
   newName.value = defaultName.textContent;
   newDescription.value = defaultDescription.textContent;
+  resetValidationError(popupFormEdit, validationConfig);
 }
 
 const popupEditInput = (evt) => {
@@ -85,6 +101,7 @@ editButton.addEventListener('click', () => {
   openPopup(popupFormEdit);
   popupEditOpened();
 });
+
 closeButton.addEventListener('click', () => closePopup(popupFormEdit));
 
 const addButton = document.querySelector('.profile__button-add');
@@ -99,10 +116,11 @@ const inputNewVluess = (evt) => {
                       link: elementLink.value}
  inputAddValues.reset();
   elementsContainer.prepend(renderElements(
-    cardObject
-  ));
+    cardObject));
 }
 
-
-addButton.addEventListener('click', () => openPopup(popupFormAdd));
+addButton.addEventListener('click', () => {
+  openPopup(popupFormAdd);
+  resetValidationError(popupFormAdd, validationConfig);
+});
 inputAddValues.addEventListener('submit', inputNewVluess);
