@@ -11,6 +11,7 @@
     min-height: 50px;
     cursor: pointer;
     padding: 0;
+    margin: 16px 0 0;
 }
 
 .popup__save-btn:hover {
@@ -21,5 +22,6 @@
     .popup__save-btn {
         font-size: 14px;
         line-height: 17px;
+        margin: 10px 0 0;
     }
 }
