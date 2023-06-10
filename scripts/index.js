@@ -33,10 +33,21 @@ document.querySelectorAll('.popup__close-btn').forEach(button => {
   button.addEventListener('click', () => closePopup(buttonsPopup));
 });
 
-// document.querySelectorAll('.popup__input').forEach(inpitElement => {
-//   const inputsAreas = inputElement.closest('.popup');
+const keyHandler = (popUp) => {
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popUp);
+    }
+  });
+};
 
-// });
+const mouseHandler = (popUp) => {
+  popUp.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popUp)
+    }
+  });
+};
 
 const imageForm = document.querySelector('.popup_form_image');
 const popupFormPicture = document.querySelector('.popup__picture');
@@ -64,6 +75,9 @@ const renderElements = (element) => {
       popupCaption.textContent = element.name;
       popupFormPicture.src = element.link;
       popupFormPicture.alt = element.name;
+      openPopup(imageForm);
+      keyHandler(imageForm);
+      mouseHandler(imageForm);
     });
     return elementItem;
   };
@@ -87,6 +101,8 @@ const popupEditOpened = () => {
   newName.value = defaultName.textContent;
   newDescription.value = defaultDescription.textContent;
   resetValidationError(popupFormEdit, validationConfig);
+  keyHandler(popupFormEdit);
+  mouseHandler(popupFormEdit);
 }
 
 const popupEditInput = (evt) => {
@@ -122,5 +138,7 @@ const inputNewVluess = (evt) => {
 addButton.addEventListener('click', () => {
   openPopup(popupFormAdd);
   resetValidationError(popupFormAdd, validationConfig);
+  keyHandler(popupFormAdd);
+  mouseHandler(popupFormAdd)
 });
 inputAddValues.addEventListener('submit', inputNewVluess);
