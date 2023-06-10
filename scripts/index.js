@@ -31,7 +31,12 @@ const deleteElement = (evt) => {
 document.querySelectorAll('.popup__close-btn').forEach(button => {
   const buttonsPopup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(buttonsPopup));
-});  
+});
+
+// document.querySelectorAll('.popup__input').forEach(inpitElement => {
+//   const inputsAreas = inputElement.closest('.popup');
+
+// });
 
 const imageForm = document.querySelector('.popup_form_image');
 const popupFormPicture = document.querySelector('.popup__picture');
@@ -96,6 +101,7 @@ editButton.addEventListener('click', () => {
   openPopup(popupFormEdit);
   popupEditOpened();
 });
+
 closeButton.addEventListener('click', () => closePopup(popupFormEdit));
 
 const addButton = document.querySelector('.profile__button-add');
