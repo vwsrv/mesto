@@ -38,7 +38,7 @@ const hasInvalidInput = (inputList) => {
   }); 
 }
 
-const resetValidationError = (formElement, validObject) => {
+const resetValidationState = (formElement, validObject) => {
   const inputList = Array.from(formElement.querySelectorAll(validObject.inputSelector));
   const buttonElement = formElement.querySelector(validObject.submitButtonSelector);
   inputList.forEach((inputElement) => {
@@ -47,20 +47,31 @@ const resetValidationError = (formElement, validObject) => {
   toggleButtonState(inputList, buttonElement, validObject);
 }
 
+const enablePopupButton = (buttonElement, validObject) => {
+  buttonElement.classList.add(validObject.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+}
+
+const disablePopupButton = (buttonElement, validObject) => {
+  buttonElement.classList.remove(validObject.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled', false);
+}
+
 const toggleButtonState = (inputList, buttonElement, validObject) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add(validObject.inactiveButtonClass);
-    buttonElement.setAttribute('disabled', true);
+    enablePopupButton(buttonElement, validObject);
   }
   else {
-    buttonElement.classList.remove(validObject.inactiveButtonClass);
-    buttonElement.removeAttribute('disabled', false);
+    disablePopupButton(buttonElement, validObject);
   }
 };
 
 const enableValidation = (validObject) => {
   const formList = Array.from(document.querySelectorAll(validObject.formSelector));
   formList.forEach((formElement) => {
-      setEventListeners(formElement, validObject);
+    setEventListeners(formElement, validObject);
+    formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+    })
   });
 };
