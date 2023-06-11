@@ -93,6 +93,7 @@ const popupEditOpened = () => {
   resetValidationState(popupFormEdit, validationConfig);
 };
 
+
 const handlePopupEditSubmit = (evt) => {
   evt.preventDefault();
   defaultName.textContent = newName.value;
