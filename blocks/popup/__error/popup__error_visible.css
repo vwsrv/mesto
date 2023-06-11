@@ -1,4 +1,5 @@
-.popup__input_type-error {
+.popup__error_visible {
+    border-bottom-color: red;
     height: 27px;
     word-wrap: break-word;
     font-weight: 400;
@@ -8,4 +9,5 @@
     margin-bottom: 0px;
     max-width: 358px;
     color: red;
+    margin: 5px 0 5px;
 }
