@@ -6,5 +6,3 @@ const validationConfig = {
     inputErrorClass: 'popup__input-error',
     errorClass: 'popup__error_visible',
   }
-  
-  enableValidation(validationConfig);

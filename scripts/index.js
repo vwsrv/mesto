@@ -1,3 +1,5 @@
+enableValidation(validationConfig);
+
 const elementsContainer = document.querySelector('.elements');
 const elementsTemplate = document.querySelector('.element-template').content.querySelector('.element');
 
@@ -6,13 +8,13 @@ const popupFormAdd = document.querySelector('.popup_form_add')
 
 const openPopup = (popUp) => {
   initMouseHandler(popUp);
-  document.addEventListener('keydown', initKeyHandler);
+  document.addEventListener('keydown', keyHandler);
   popUp.classList.add('popup_opened');
 }
 
 const closePopup = (popUp) => {
   popUp.classList.remove('popup_opened');
-  document.removeEventListener('keydown', initKeyHandler, false);
+  document.removeEventListener('keydown', keyHandler, false);
   popUp.removeEventListener('mousedown', initMouseHandler, false);
 }
 
@@ -34,11 +36,9 @@ const initMouseHandler = (popUp) => {
   });
 }
 
-const initKeyHandler = (evt) => {
+const keyHandler = (evt) => {
   if (evt.key === 'Escape') {
-    closePopup(popupFormEdit);
-    closePopup(popupFormAdd);
-    closePopup(imageForm);
+    closePopup(document.querySelector('.popup'));
   }
 }
 
@@ -87,7 +87,7 @@ const defaultName = document.querySelector('.profile__name');
 const defaultDescription = document.querySelector(".profile__description");
 const formEditProfile = document.querySelector('#popup__form_edit');
 
-const popupEditOpened = () => {
+const openEditPopup = () => {
   newName.value = defaultName.textContent;
   newDescription.value = defaultDescription.textContent;
   resetValidationState(popupFormEdit, validationConfig);
@@ -104,7 +104,7 @@ const handlePopupEditSubmit = (evt) => {
 formEditProfile.addEventListener('submit', handlePopupEditSubmit);
 editButton.addEventListener('click', () => {
   openPopup(popupFormEdit);
-  popupEditOpened();
+  openEditPopup();
 });
 
 closeButtonEdit.addEventListener('click', () => closePopup(popupFormEdit));
@@ -113,7 +113,6 @@ const addButton = document.querySelector('.profile__button-add');
 const elementLink = document.querySelector('.popup__input_type_link');
 const elementTitle = document.querySelector('.popup__input_type_title');
 const formAddCard = document.querySelector('#popup__form_add');
-const submitButton = document.querySelector('.popup__submit-btn')
 
 const handlePopupNewCardSubmit = (evt) => {
   evt.preventDefault();
@@ -128,8 +127,7 @@ const handlePopupNewCardSubmit = (evt) => {
 addButton.addEventListener('click', () => {
   openPopup(popupFormAdd);
   formAddCard.reset();
-  resetValidationState(popupFormAdd, validationConfig);;
-  submitButton.setAttribute('disabled', true);
+  resetValidationState(popupFormAdd, validationConfig);
 });
 
 formAddCard.addEventListener('submit', handlePopupNewCardSubmit);
