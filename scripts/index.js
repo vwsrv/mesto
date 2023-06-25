@@ -1,5 +1,7 @@
-import {initialCards} from './elements.js'
-import {Card} from './сard.js'
+import { initialCards } from './elements.js'
+import { Card } from './сard.js'
+import { FormValidator } from './formValidator.js';
+import { validationConfig } from './constants.js';
 
 const openPopup = (popUp) => {
   initMouseHandler(popUp);
@@ -105,3 +107,6 @@ formAddCard.addEventListener('submit', handlePopupNewCardSubmit);
       document.querySelector('.elements').append(cardElement);
     });
 }());
+
+const valid = new FormValidator(validationConfig, popupFormAdd);
+console.log(valid);
