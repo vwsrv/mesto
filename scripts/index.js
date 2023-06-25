@@ -1,6 +1,6 @@
 import { initialCards } from './elements.js'
 import { Card } from './сard.js'
-import { FormValidator } from './formValidator.js';
+import { formValidator } from './formValidator.js';
 import { validationConfig } from './constants.js';
 
 const openPopup = (popUp) => {
@@ -57,7 +57,6 @@ const formEditProfile = document.querySelector('#popup__form_edit');
 const openEditPopup = () => {
   newName.value = defaultName.textContent;
   newDescription.value = defaultDescription.textContent;
-  resetValidationState(popupFormEdit, validationConfig);
 };
 
 const handlePopupEditSubmit = (evt) => {
@@ -67,10 +66,13 @@ const handlePopupEditSubmit = (evt) => {
   closePopup(popupFormEdit);
 };
 
+const editFormValidator = new formValidator(popupFormEdit, validationConfig);
+
 formEditProfile.addEventListener('submit', handlePopupEditSubmit);
 editButton.addEventListener('click', () => {
   openPopup(popupFormEdit);
   openEditPopup();
+  editFormValidator.enableValidation();
 });
 
 closeButtonEdit.addEventListener('click', () => closePopup(popupFormEdit));
@@ -88,14 +90,15 @@ const handlePopupNewCardSubmit = (evt) => {
   const card = new Card (cardObject, '.element-template', openImage)
   const cardElement = card.generateCard();
   document.querySelector('.elements').prepend(cardElement);
-  closePopup(popupFormAdd);
   formAddCard.reset();
+  closePopup(popupFormAdd);
 };
 
+const addFormValidator = new formValidator(popupFormAdd, validationConfig);
 addButton.addEventListener('click', () => {
   openPopup(popupFormAdd);
+  addFormValidator.enableValidation();
   formAddCard.reset();
-  resetValidationState(popupFormAdd, validationConfig);
 });
 
 formAddCard.addEventListener('submit', handlePopupNewCardSubmit);
@@ -108,5 +111,3 @@ formAddCard.addEventListener('submit', handlePopupNewCardSubmit);
     });
 }());
 
-const valid = new FormValidator(validationConfig, popupFormAdd);
-console.log(valid);
