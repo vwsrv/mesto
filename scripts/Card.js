@@ -12,18 +12,15 @@ export class Card {
         .content
         .querySelector('.element')
         .cloneNode(true);
-  
       return cardElement;
     }
 
     _likeElement() {
-        const likeButton = this._element.querySelector('.element__like-btn');
-        likeButton.classList.toggle('element__like-btn_active');
+        this._likeButton.classList.toggle('element__like-btn_active');
     }
 
     _deleteElement() {
-        const deleteButton = this._element.querySelector('.element__delete-btn');
-        deleteButton.closest('.element').remove();
+        this._element.remove();
     }
 
     _openImageForm() {
@@ -32,20 +29,23 @@ export class Card {
 
     generateCard() {
         this._element = this._getTemplate();
+        this._likeButton = this._element.querySelector('.element__like-btn');
+        this._elementImage = this._element.querySelector('.element__image');
         this._element.querySelector('.element__title').textContent = this._title;
-        this._element.querySelector('.element__image').src = this._link;
+        this._elementImage.src = this._link;
+        this._elementImage.alt = this._title;
         this._setEventListeners(this._element);
         return this._element;
     }
 
     _setEventListeners = () => {
-        this._element.querySelector('.element__like-btn').addEventListener('click', () => {
+        this._likeButton.addEventListener('click', () => {
             this._likeElement();
         });
         this._element.querySelector('.element__delete-btn').addEventListener('click', () => {
             this._deleteElement();
         });
-        this._element.querySelector('.element__image').addEventListener('click', () => {
+        this._elementImage.addEventListener('click', () => {
             this._openImage(this._link, this._title);
         });
     }
