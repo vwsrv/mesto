@@ -44,7 +44,7 @@ export class FormValidator{
         }); 
     }
 
-    _resetValidationState() {
+    resetValidationState() {
         this._inputList.forEach((inputElement) => {
           this._hideInputError(inputElement);
         });
@@ -70,13 +70,6 @@ export class FormValidator{
     };
 
     enableValidation() {
-        const formList = Array.from(this._formElement.querySelectorAll(this._validationConfig.formSelector));
-        formList.forEach((formElement) => {
           this._setEventListeners();
-          this._resetValidationState();
-          formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-          })
-        });
     }
 }
