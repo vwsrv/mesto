@@ -24,10 +24,6 @@ export class Card {
         this._element = null;
     }
 
-    _openImageForm() {
-        this._openImage(link, title);
-    }
-
     generateCard() {
         this._element = this._getTemplate();
         this._likeButton = this._element.querySelector('.element__like-btn');

@@ -1,6 +1,6 @@
 import { initialCards } from './elements.js'
 import { Card } from './Card.js'
-import { FormValidator } from './FormValidator.js';
+import { FormValidator } from './formValidator.js';
 import { validationConfig } from './constants.js';
 
 const popupFormEdit = document.querySelector('.popup_form_edit');
@@ -57,9 +57,7 @@ const initMouseHandler = (popUp) => {
 }
 
 const popups = Array.from(document.querySelectorAll('.popup'))
-popups.forEach((popup) => {
-    popup.addEventListener('click', initMouseHandler(popup))
-}) 
+popups.forEach(initMouseHandler);
 
 const keyHandler = (evt) => {
   if (evt.key === 'Escape') {
@@ -107,6 +105,7 @@ editButton.addEventListener('click', () => {
   openEditPopup();
   editFormValidator.resetValidationState();
 });
+
 formEditProfile.addEventListener('submit', handlePopupEditSubmit);
 closeButtonEdit.addEventListener('click', () => closePopup(popupFormEdit));
 formAddCard.addEventListener('submit', handlePopupNewCardSubmit);
