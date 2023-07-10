@@ -12,7 +12,7 @@ const stylesHandler = MiniCssExtractPlugin.loader;
 
 
 const config = {
-    entry: './src/index.js',
+    entry: './src/pages/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
     },
@@ -22,7 +22,7 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'index.html',
+            template: './src/index.html',
         }),
 
         new MiniCssExtractPlugin(),
@@ -33,7 +33,7 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/i,
+                test: /\.js$/i,
                 loader: 'babel-loader',
             },
             {
@@ -41,8 +41,18 @@ const config = {
                 use: [stylesHandler, 'css-loader', 'postcss-loader'],
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+                test: /\.(eot|svg|png|jpg|gif)$/i,
                 type: 'asset',
+                generator : {
+                    filename : 'images/[name][ext][query]',
+                } 
+            },
+            {
+                test: /\.(ttf|woff|woff2)$/i,
+                type: 'asset',
+                generator : {
+                    filename : 'fonts/[name][ext][query]',
+                }
             },
 
             // Add your rules for custom modules here
