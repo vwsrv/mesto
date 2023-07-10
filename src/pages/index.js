@@ -1,3 +1,4 @@
+import './index.css';
 import { popupFormEdit, 
   popupFormAdd,
   editButton,
@@ -8,14 +9,14 @@ import { popupFormEdit,
   newDescription,
   addButton,
   formAddCard
-} from '../utils/constants.js'
-import { initialCards } from '../utils/elements.js'
-import FormValidator from '../components/FormValidator.js'
-import Section from '../components/Section.js'
-import Card from '../components/Card.js'
-import PopupWithForm from '../components/PopupWithForm.js'
-import PopupWithImage from '../components/PopupWithImage.js'
-import UserInfo from '../components/UserInfo.js'
+} from '../utils/constants.js';
+import { initialCards } from '../utils/elements.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
 
 const editFormValidator = new FormValidator(popupFormEdit, validationConfig);
 editFormValidator.enableValidation();
