@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
     constructor(elementsData, templateSelector, openImage) {
       this._title = elementsData.name;
       this._link = elementsData.link;
@@ -13,6 +13,10 @@ export class Card {
         .querySelector('.element')
         .cloneNode(true);
       return cardElement;
+    }
+
+    _openImageForm(link, title) {
+        this._openImage(link, title);
     }
 
     _likeElement() {
@@ -42,8 +46,8 @@ export class Card {
         this._element.querySelector('.element__delete-btn').addEventListener('click', () => {
             this._deleteElement();
         });
-        this._elementImage.addEventListener('click', () => {
-            this._openImage(this._link, this._title);
-        });
+        this._elementImage.addEventListener('click', () => { 
+            this._openImageForm(this._link, this._title); 
+        }); 
     }
 }
