@@ -3,12 +3,9 @@ import { popupFormEdit,
   popupFormAdd,
   editButton,
   validationConfig,
-  elementTitle,
-  elementLink,
-  newName,
-  newDescription,
   addButton,
-  formAddCard
+  newName,
+  newDescription
 } from '../utils/constants.js';
 import { initialCards } from '../utils/elements.js';
 import FormValidator from '../components/FormValidator.js';
@@ -25,58 +22,51 @@ addFormValidator.enableValidation();
 
 const popupFormImage = new PopupWithImage('.popup_form_image');
 function openImageForm(link, title) {
-popupFormImage.open(link, title);
+  popupFormImage.open(link, title);
 }
 popupFormImage.setEventListeners();
 
 const createCardElement = (data, template, handle) => {
-const card = new Card(data, template, handle);
-const cardElement = card.generateCard();
-
-return cardElement;
+  const card = new Card(data, template, handle);
+  const cardElement = card.generateCard();
+  return cardElement;
 };
 
-const cardSection = new Section({
-                          items: initialCards, 
-                          renderer: (item) => {
-                          const cardElement = createCardElement(item, '.element-template', openImageForm);
-                          cardSection.addItem(cardElement);
-                          }
-                          }, '.elements');
+const cardSection = new Section(
+  {items: initialCards, 
+  renderer: (item) => {
+  const cardElement = createCardElement(item, '.element-template', openImageForm);
+  cardSection.addItem(cardElement);
+  }
+  }, '.elements');
 cardSection.renderItems();
 
 
 const userInfo = new UserInfo({
-profileName: '.profile__name',
-profileDesctiption: '.profile__description'
+  profileName: '.profile__name',
+  profileDesctiption: '.profile__description'
 });
 
-const popupWithFormEdit = new PopupWithForm('.popup_form_edit', () => {
-userInfo.setUserInfo({
-name: newName.value,
-description: newDescription.value
-});
+const popupWithFormEdit = new PopupWithForm('.popup_form_edit', userData => {
+  userInfo.setUserInfo(userData);
 });
 
 editButton.addEventListener('click', () => {
-popupWithFormEdit.open();
-const {name, description} = userInfo.getUserInfo();
-newName.value = name;
-newDescription.value = description;
-editFormValidator.resetValidationState();
-});
+  popupWithFormEdit.open();
+  const {name, description} = userInfo.getUserInfo();
+    newName.value = name;
+    newDescription.value = description;
+    editFormValidator.resetValidationState();
+  });
 popupWithFormEdit.setEventListeners();
 
-const popupWithFormAdd = new PopupWithForm('.popup_form_add', () => {
-const cardObject = {name: elementTitle.value, 
-                link: elementLink.value};
-const cardElement = createCardElement(cardObject, '.element-template', openImageForm);
-cardSection.prependItem(cardElement);
+const popupWithFormAdd = new PopupWithForm('.popup_form_add', cardData => {
+  const cardElement = createCardElement(cardData, '.element-template', openImageForm);
+  cardSection.prependItem(cardElement);
 });
 
 addButton.addEventListener('click', () => {
-popupWithFormAdd.open();
-addFormValidator.resetValidationState();
-formAddCard.reset();
+  popupWithFormAdd.open();
+  addFormValidator.resetValidationState();
 });
 popupWithFormAdd.setEventListeners();
