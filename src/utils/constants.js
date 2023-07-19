@@ -7,6 +7,7 @@ export const validationConfig = {
     errorClass: 'popup__error_visible',
   }
 
+export const projectToken = '286e65cb-598a-4a43-9bc6-d7bbdd44ff1c';
 export const elementsContainer = document.querySelector('.elements');
 export const popupFormEdit = document.querySelector('.popup_form_edit');
 export const closeButtonEdit = popupFormEdit.querySelector('.popup__close-btn');
