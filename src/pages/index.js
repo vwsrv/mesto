@@ -5,7 +5,9 @@ import { popupFormEdit,
   validationConfig,
   addButton,
   newName,
-  newDescription
+  newDescription,
+  popupFormUpdate,
+  updateAvatarButton
 } from '../utils/constants.js';
 import { initialCards } from '../utils/elements.js';
 import FormValidator from '../components/FormValidator.js';
@@ -19,6 +21,8 @@ const editFormValidator = new FormValidator(popupFormEdit, validationConfig);
 editFormValidator.enableValidation();
 const addFormValidator = new FormValidator(popupFormAdd, validationConfig);
 addFormValidator.enableValidation();
+const updateFormValidator = new FormValidator(popupFormUpdate, validationConfig);
+updateFormValidator.enableValidation();
 
 const popupFormImage = new PopupWithImage('.popup_form_image');
 function openImageForm(link, title) {
@@ -26,7 +30,7 @@ function openImageForm(link, title) {
 }
 popupFormImage.setEventListeners();
 
-const createCardElement = (data, template, handle) => {
+function createCardElement(data, template, handle){
   const card = new Card(data, template, handle);
   const cardElement = card.generateCard();
   return cardElement;
@@ -51,6 +55,14 @@ const popupWithFormEdit = new PopupWithForm('.popup_form_edit', userData => {
   userInfo.setUserInfo(userData);
 });
 
+updateAvatarButton.addEventListener('click', () => {
+  popupWithFormAvatar.open();
+  updateFormValidator.resetValidationState()
+});
+
+const popupWithFormAvatar = new PopupWithForm('.popup_form_update');
+popupWithFormAvatar.setEventListeners();
+
 editButton.addEventListener('click', () => {
   popupWithFormEdit.open();
   const {name, description} = userInfo.getUserInfo();
@@ -70,3 +82,13 @@ addButton.addEventListener('click', () => {
   addFormValidator.resetValidationState();
 });
 popupWithFormAdd.setEventListeners();
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-71/cards', {
+  headers: {
+    authorization: '286e65cb-598a-4a43-9bc6-d7bbdd44ff1c'
+  }
+})
+  .then(res => res.json())
+  .then((result) => {
+    console.log(result);
+  }); 

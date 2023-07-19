@@ -25,3 +25,5 @@ export const elements = document.querySelector('.elements');
 export const imageForm = document.querySelector('.popup_form_image');
 export const popupPicture = document.querySelector('.popup__picture');
 export const popupCaption = document.querySelector('.popup__caption');
+export const popupFormUpdate = document.querySelector('.popup_form_update');
+export const updateAvatarButton = document.querySelector('.profile__avatar-btn');

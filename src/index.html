@@ -12,7 +12,10 @@
     </header>
     <main class="content">
         <section class="profile">
-            <img src="<%=require('./images/profile__avatar.jpg')%>" alt="Мужик" class="profile__avatar">
+            <div class="profile__avatar">
+                <img src="<%=require('./images/profile__avatar.jpg')%>" alt="Мужик" class="profile__avatar-image">
+                <button class="profile__avatar-btn"></button>
+            </div>
             <div class="profile__info">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button type="button" class="profile__button-edit" aria-label="Редактировать"></button>
@@ -69,13 +72,41 @@
             <p class="popup__caption"></p>
         </div>
     </div>
+    <div class="popup popup_form_confirm">
+        <div class="popup__container popup__container-confirm">
+            <button type="reset" class="popup__close-btn" aria-label="Закрыть"></button>
+            <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+            <form class="popup__form" id ="popup__form_confirm" name="confirm_changes" novalidate>
+                    <button type="submit" class="popup__submit-btn" aria-label="Сохранить">Да</button>
+            </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="popup popup_form_update">
+        <div class="popup__container popup__container-update">
+            <button type="reset" class="popup__close-btn" aria-label="Закрыть"></button>
+            <h2 class="popup__title popup__title_update">Обновить аватар</h2>
+            <form class="popup__form" id ="popup__form_update" name="add_element" novalidate>
+                <fieldset class="popup__set">
+                    <lebel for="popup__input_type_link" class="popup__field">
+                        <input type="url" name="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" id="link-input" required>
+                        <span class="popup__input-error link-input-error"></span>
+                    </lebel>
+                    <button type="submit" class="popup__submit-btn" aria-label="Сохранить">Сохранить</button>
+            </fieldset>
+            </form>
+        </div>
+    </div>
     <template class="element-template">
         <article class="element">
             <button type="button" class="element__delete-btn" aria-label="Удалить"></button>
             <img src="#" alt="" class="element__image">
             <div class="element__info">  
                 <h2 class="element__title"></h2>
-                <button type="button" class="element__like-btn" aria-label="Нравится"></button>
+                <div class="element__button">
+                    <button type="button" class="element__like-btn" aria-label="Нравится"></button>
+                    <p class="element__like-counter"></p>
+                </div>
             </div>
         </article>
     </template>
