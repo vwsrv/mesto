@@ -34,11 +34,11 @@
             <form class="popup__form" id ="popup__form_edit" name="profile-edit" novalidate>
                 <fieldset class="popup__set">
                     <label for="popup__input_type_name" class="popup__field">
-                        <input type="text" name="name" value="" class="popup__input popup__input_type_name" placeholder="Введите имя профиля" id="name-input" minlength="2" maxlength="40" required>
+                        <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Введите имя профиля" id="name-input" minlength="2" maxlength="40" required>
                         <span class="popup__input-error name-input-error"></span>
                     </label>
                     <label for="popup__input_type_description" class="popup__field">
-                        <input type="text" name="description" value="" class="popup__input popup__input_type_description" placeholder="Введите описание профиля" minlength="2" maxlength="200" id="description-input" required>
+                        <input type="text" name="about" class="popup__input popup__input_type_description" placeholder="Введите описание профиля" minlength="2" maxlength="200" id="description-input" required>
                         <span class="popup__input-error description-input-error"></span>
                     </label>
                     <button type="submit" class="popup__submit-btn" aria-label="Сохранить">Сохранить</button>
@@ -75,11 +75,10 @@
     <div class="popup popup_form_confirm">
         <div class="popup__container popup__container-confirm">
             <button type="reset" class="popup__close-btn" aria-label="Закрыть"></button>
-            <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
-            <form class="popup__form" id ="popup__form_confirm" name="confirm_changes" novalidate>
+                <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+                <form class="popup__form" id ="popup__form_confirm" name="confirm_changes" novalidate>
                     <button type="submit" class="popup__submit-btn" aria-label="Сохранить">Да</button>
-            </fieldset>
-            </form>
+                </form>
         </div>
     </div>
     <div class="popup popup_form_update">
@@ -89,7 +88,7 @@
             <form class="popup__form" id ="popup__form_update" name="add_element" novalidate>
                 <fieldset class="popup__set">
                     <lebel for="popup__input_type_link" class="popup__field">
-                        <input type="url" name="link" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" id="link-input" required>
+                        <input type="url" name="avatar" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" id="link-input" required>
                         <span class="popup__input-error link-input-error"></span>
                     </lebel>
                     <button type="submit" class="popup__submit-btn" aria-label="Сохранить">Сохранить</button>

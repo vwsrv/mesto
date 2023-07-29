@@ -5,6 +5,7 @@ export const validationConfig = {
     inactiveButtonClass: 'popup__submit-btn_inactive',
     inputErrorClass: 'popup__input-error',
     errorClass: 'popup__error_visible',
+    likeClass: '.element__like-counter'
   }
 
 export const projectToken = '286e65cb-598a-4a43-9bc6-d7bbdd44ff1c';
@@ -28,3 +29,6 @@ export const popupPicture = document.querySelector('.popup__picture');
 export const popupCaption = document.querySelector('.popup__caption');
 export const popupFormUpdate = document.querySelector('.popup_form_update');
 export const updateAvatarButton = document.querySelector('.profile__avatar-btn');
+export const likeCounterStatus = document.querySelector('.element__like-counter');
+export const submitButton = document.querySelector('.popup__submit-btn')
+export const likeButton = document.querySelector('.element__like-btn')

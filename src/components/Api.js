@@ -1,19 +1,128 @@
 export default class Api {
-    constructor(options) {
-      // тело конструктора
-    }
-  
-    getInitialCards() {
-      // ...
-    }
-  
-    // другие методы работы с API
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
+    this._headers = headers;
   }
   
-  const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-71',
-    headers: {
-      authorization: '286e65cb-598a-4a43-9bc6-d7bbdd44ff1c',
-      'Content-Type': 'application/json'
-    }
-  }); 
+  _checkServerResponse(res) {
+    if (res.ok) {
+      return res.json();
+    } throw new Error(`Ошибка соединения ${res.status}`);
+  }
+
+  getUserProfile() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
+      headers: this._headers
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(res);
+    }).catch((err) => console.error(err));
+  }
+
+  setUserProfile({userData}) {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: userData.name, 
+        about: userData.about,
+      })
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(res);
+    }).catch((err) => console.error(err));
+  }
+
+  setUserProfileAvatar({userData}) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: userData.avatar})
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(res);
+    }).catch((err) => console.error(err));
+  }
+
+  getInitialCards() {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'GET',
+      headers: this._headers,
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(res);
+    }).catch((err) => console.error(err))
+  }
+
+  setUserCard({cardData}) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(
+        {name: cardData.name,
+        link: cardData.link
+        })
+    })
+    .then((res) => {
+      console.log(res)
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(res);
+    }).catch((err) => console.error(err));
+  }
+
+  deleteUserCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(res);
+    }).catch((err) => console.error(err));
+  }
+
+  addLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      throw new Error(res);
+    }).catch((err) => console.error(err));
+  }
+
+  deleteLike(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this._headers
+    })
+    .then((res) => {
+      console.log(res)
+      if (res.ok) {
+        return res.json()
+      }
+      throw new Error(res);
+    }).catch((err) => console.error(err));
+  }
+}
