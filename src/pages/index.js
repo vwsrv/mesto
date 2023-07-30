@@ -95,7 +95,6 @@ Promise.all([api.getInitialCards(), api.getUserProfile()])
 .then(([elementsData, userData]) => {
   currentUserId = userData._id;
   userInfo.setUserInfo(userData);
-  userInfo.setUserAvatar(userData);
   cardSection.renderItems(elementsData)
 })
 .catch((error) => {
@@ -110,10 +109,17 @@ function createCardElement(elementsData, currentUserId) {
     {handleOpenImage: (link, title) => {
       popupFormImage.open(link, title);
     },
-    handleDeleteCardElement: (cardElement) => {
+    handleDeleteCardElement: (cardId) => {
       popupWithFormConfirm.open();
-      popupWithFormConfirm.setCardElement(cardElement)
-      card.deleteCardElement();
+      popupWithFormConfirm.renderLoading(false);
+      popupWithFormConfirm.setHandleConfirm(() => {
+        api.deleteUserCard(cardId)
+        .then(() => {
+          popupWithFormConfirm.renderLoading(true);
+          card.deleteCardElement();
+          popupWithFormConfirm.close()
+      })
+      });
     },
     handleLikeElement: (cardId, isLiked) => {
       if (isLiked) {
@@ -134,16 +140,7 @@ function createCardElement(elementsData, currentUserId) {
   return card.generateCard();
 }
 
-const popupWithFormConfirm = new PopupFormConfirmation('.popup_form_confirm', cardId => {
-  console.log(cardId)
-  api.deleteUserCard(cardId)
-  .then(() => {
-    popupWithFormConfirm.close();
-  })
-  .catch((error) => {
-    console.log(`Ошибка удаления карточки ${error}`);
-  });
-});
+const popupWithFormConfirm = new PopupFormConfirmation('.popup_form_confirm');
 
 editButton.addEventListener('click', () => {
   popupWithFormEdit.open();

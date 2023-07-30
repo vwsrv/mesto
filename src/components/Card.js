@@ -49,7 +49,7 @@ export default class Card {
         this._likeButton.classList.add('element__like-btn_active');
     }
 
-    static dislikeCardElement() {
+    dislikeCardElement() {
         this._likeButton.classList.remove('element__like-btn_active');
     }
 

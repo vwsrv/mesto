@@ -15,12 +15,7 @@ export default class Api {
       method: 'GET',
       headers: this._headers
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error(res);
-    }).catch((err) => console.error(err));
+    .then((res) => this._checkServerResponse(res));
   }
 
   setUserProfile({userData}) {
@@ -32,12 +27,7 @@ export default class Api {
         about: userData.about,
       })
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error(res);
-    }).catch((err) => console.error(err));
+    .then((res) => this._checkServerResponse(res));
   }
 
   setUserProfileAvatar({userData}) {
@@ -47,12 +37,7 @@ export default class Api {
       body: JSON.stringify({
         avatar: userData.avatar})
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error(res);
-    }).catch((err) => console.error(err));
+    .then((res) => this._checkServerResponse(res));
   }
 
   getInitialCards() {
@@ -60,12 +45,7 @@ export default class Api {
       method: 'GET',
       headers: this._headers,
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error(res);
-    }).catch((err) => console.error(err))
+    .then((res) => this._checkServerResponse(res));
   }
 
   setUserCard({cardData}) {
@@ -77,13 +57,7 @@ export default class Api {
         link: cardData.link
         })
     })
-    .then((res) => {
-      console.log(res)
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error(res);
-    }).catch((err) => console.error(err));
+    .then((res) => this._checkServerResponse(res));
   }
 
   deleteUserCard(cardId) {
@@ -91,12 +65,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers,
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error(res);
-    }).catch((err) => console.error(err));
+    .then((res) => this._checkServerResponse(res));
   }
 
   addLike(cardId) {
@@ -104,12 +73,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers,
     })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      throw new Error(res);
-    }).catch((err) => console.error(err));
+    .then((res) => this._checkServerResponse(res));
   }
 
   deleteLike(cardId) {
@@ -117,12 +81,6 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then((res) => {
-      console.log(res)
-      if (res.ok) {
-        return res.json()
-      }
-      throw new Error(res);
-    }).catch((err) => console.error(err));
+    .then((res) => this._checkServerResponse(res));
   }
 }
