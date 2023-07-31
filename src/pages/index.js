@@ -55,45 +55,47 @@ const popupWithFormEdit = new PopupWithForm('.popup_form_edit', userData => {
   popupWithFormEdit.renderLoading(true);
   api.setUserProfile({userData})
   .then((res) => {
-    popupWithFormEdit.renderLoading(false);
     userInfo.setUserInfo(res)
     popupWithFormEdit.close();
   })
   .catch((error) => {
     console.log(`Ошибка изменения информации о пользователе ${error}`);
   })
+  .finally(() => popupWithFormEdit.renderLoading(false));
 });
 
 const popupWithFormAvatar = new PopupWithForm('.popup_form_update', userData => {
   popupWithFormAvatar.renderLoading(true);
   api.setUserProfileAvatar({userData})
   .then((res) => {
-    userInfo.setUserAvatar(res);
-    popupWithFormAvatar.renderLoading(false);
+    userInfo.setUserInfo(res);
     popupWithFormAvatar.close();
   })
   .catch((error) => {
     console.log(`Ошибка изменения аватара${error}`);
   })
+  .finally(() => popupWithFormAvatar.renderLoading(false));
 });
 
 const popupWithFormAdd = new PopupWithForm('.popup_form_add', cardData => {
   popupWithFormAdd.renderLoading(true);
   api.setUserCard({cardData})
   .then(responseData => {
-    popupWithFormAdd.renderLoading(false);
+    console.log(responseData)
     const cardElement = createCardElement(responseData, currentUserId);
-    elements.prepend(cardElement);
+    cardSection.addItem(cardElement);
     popupWithFormAdd.close();
   })
   .catch((error) => {
     console.log(`Ошибка добавления карточки ${error}`);
-  });
+  })
+  .finally(() => popupWithFormAdd.renderLoading(false));
 });
 
 Promise.all([api.getInitialCards(), api.getUserProfile()])
 .then(([elementsData, userData]) => {
   currentUserId = userData._id;
+  elementsData.reverse();
   userInfo.setUserInfo(userData);
   cardSection.renderItems(elementsData)
 })
@@ -113,12 +115,15 @@ function createCardElement(elementsData, currentUserId) {
       popupWithFormConfirm.open();
       popupWithFormConfirm.renderLoading(false);
       popupWithFormConfirm.setHandleConfirm(() => {
+        popupWithFormConfirm.renderLoading(true)
         api.deleteUserCard(cardId)
         .then(() => {
-          popupWithFormConfirm.renderLoading(true);
           card.deleteCardElement();
-          popupWithFormConfirm.close()
-      })
+          popupWithFormConfirm.close();
+        })
+        .finally(() => {
+          popupWithFormConfirm.renderLoading(false)
+        });
       });
     },
     handleLikeElement: (cardId, isLiked) => {
